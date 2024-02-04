@@ -6,26 +6,21 @@ import { useRouter, Stack } from "expo-router";
 import { COLORS, icons  } from "../../constants";
 import { ScreenHeaderBtn } from "../../components";
 
-import { register } from "../index"
+import { useAuth } from "../../lib/authContext";
 
-const handleReg = (username, email, password) =>{
-    console.log("inside handlereg; email="+email+"password="+password + "name="+ username);
-   try{ register(username, email,password);
-
-}
-catch(error){console.log(error)}
-
-
-  /*  router.push("/app/index.js");*/
-
-}
 
 const RegisterScreen =() => {
     const router = useRouter();
 
-    const [username, setUserName] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const {name, email,password, login, register, loggedInUser} = useAuth();
+
+    const handleReg = (name, email, password) =>{
+       console.log("inside handlereg; email="+email+"password="+password + "name="+ name);
+       try{ register(name, email,password);    
+    }
+    catch(error){console.log(error)}
+    }
+
     
     return(
         <SafeAreaView style={loginStyle.content}>
@@ -46,7 +41,7 @@ const RegisterScreen =() => {
             <Card style = {loginStyle.card}>
                 
                 <Card.Content>
-                    <TextInput label="Name"  mode="outlined"  onChangeText={(text)=>setUserName(text)}/>
+                    <TextInput label="Name"  mode="outlined"  onChangeText={(text)=>setName(text)}/>
                     <TextInput label="Email" keyboardType="email-address" mode="outlined"  onChangeText={(text)=>setEmail(text)}/>
                     <TextInput label ="Password" secureTextEntry={true} mode="outlined"  onChangeText={(text)=>setPassword(text)}/>
                     
@@ -54,7 +49,7 @@ const RegisterScreen =() => {
                         mode="contained" 
                         compact={true} 
                         style={loginStyle.cardButton}
-                        onPress={()=>{handleReg(username, email,password)}}>
+                        onPress={()=>{handleReg(name, email,password)}}>
 
                             Register</Button>
                     <Button mode="text" compact={true} onPress={()=>router.push("/login/login.screen")} style={loginStyle.cardButton}>Have an account? Log in </Button>

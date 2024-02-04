@@ -5,20 +5,21 @@ import { loginStyle } from "./login.style";
 import { ScreenHeaderBtn } from "../../components";
 import { router, useRouter, Stack, Link, Redirect } from "expo-router";
 import {COLORS, icons, images, SIZES} from "../../constants";
-import { login } from "../index"
-
-
-const handleLogin = (email,password) => {
-    console.log("inside handlelogin; email="+email+"password="+password);
-    login(email,password); 
-}
+import { useAuth } from "../../lib/authContext"
 
 
 const LoginScreen =() => {  
     
     const router = useRouter();
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const {name, email, password, login, loggedInUser} = useAuth();
+
+    const [tempemail, setTempemail] = useState('');
+    const [temppass, setTemppass] = useState('');
+
+    const handleLogin = () => {
+        console.log("inside handlelogin; email="+tempemail+"password="+temppass);
+        login({email:tempemail, password:temppass}); 
+    }
    
     return(        
         <SafeAreaView style={loginStyle.content}>     
@@ -49,21 +50,21 @@ const LoginScreen =() => {
                         label="Email" 
                         keyboardType="email-address" 
                         mode="outlined"
-                        onChangeText={(text)=>setEmail(text)}
+                        onChangeText={(text)=>setTempemail(text)}
 
                         />
                     <TextInput 
                         label ="Password" 
                         secureTextEntry={true} 
                         mode="outlined"
-                        onChangeText={(text)=>setPassword(text)}
+                        onChangeText={(text)=>setTemppass(text)}
                         />
                     <Button mode="text" style={loginStyle.cardButton}>Forgot email/Password</Button>
                     <Button 
                         mode="contained" 
                         compact={true} 
                         style={loginStyle.cardButton} 
-                        onPress={()=>{handleLogin(email, password)}}>
+                            onPress={handleLogin}>
                         Log in</Button>
                     <Button mode="text" compact={true} onPress={()=>router.push("register/")} style={loginStyle.cardButton}>Don't have an account? Register</Button>
                 </Card.Content>
