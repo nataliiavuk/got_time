@@ -5,6 +5,7 @@ import {Redirect, Stack, useRouter} from "expo-router";
 import { Provider as PaperProvider } from "react-native-paper";
 import LoginScreen from "./login/login.screen";
 import { AuthProvider, useAuth } from "../lib/authContext"
+import Welcome from "../components/common/welcome/welcome";
 
 const Home = () => {
     const router = useRouter();
@@ -12,7 +13,7 @@ const Home = () => {
   
     return (
       <PaperProvider>
-        {loggedInUser ? <Text>welcome </Text> : <LoginScreen />}
+        {loggedInUser ? <Welcome/> : <LoginScreen />}
       </PaperProvider>
     );
   };

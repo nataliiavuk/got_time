@@ -11,8 +11,7 @@ import { useAuth } from "../../lib/authContext"
 const LoginScreen =() => {  
     
     const router = useRouter();
-    const {name, email, password, login, loggedInUser} = useAuth();
-
+    const {email, password, login, loggedInUser} = useAuth();
     const [tempemail, setTempemail] = useState('');
     const [temppass, setTemppass] = useState('');
 
