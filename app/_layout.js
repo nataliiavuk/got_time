@@ -1,4 +1,4 @@
-import { Slot, Stack } from "expo-router";
+import { Stack } from "expo-router";
 import { useCallback } from "react";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen"
@@ -19,7 +19,14 @@ const Layout = () => {
   }, [fontsLoaded])
 
 if(!fontsLoaded) return null;
-return<Stack onLayout = {onLayoutRootView}/>;
+return <Stack onLayout = {onLayoutRootView}
+   options ={{
+                headerStyle: {backgroundColor:COLORS.white},}}>
+            <Stack.Screen name="index"/>
+            <Stack.Screen name="home/[id]"/>
+            <Stack.Screen name="login/index"/>
+            <Stack.Screen name="register/index"/>
+</Stack>
 }
 
 export default Layout;

@@ -5,16 +5,16 @@ import styles from './todo.style';
 
 
 
-const TodoCard = ({title, duration, recurrency, category}) => {
+const TodoCard = (todo) => {
 
-    console.log('Rendering FeaturedCard:', title, duration);
-
-  return (
-    <TouchableOpacity 
-    style={styles.container}>
+    console.log('Inside todocard: '+ JSON.stringify(todo, null, 2) + todo.todo.title);
+  
+    const { amount, title, recurrency, duration, category } = todo.todo;
+    return (
+    <TouchableOpacity style={styles.container}>
       <TouchableOpacity style={styles.logoContainer}>
         <Image
-          source={"https://t4.ftcdn.net/jpg/05/05/61/73/360_F_505617309_NN1CW7diNmGXJfMicpY9eXHKV4sqzO5H.jpg"}
+    
           resizeMode='contain'  
           style ={styles.logoImage}        
         />
@@ -22,7 +22,7 @@ const TodoCard = ({title, duration, recurrency, category}) => {
      
       <View style = {styles.textContainer}>
         <Text style= {styles.jobName} numberOfLines={1}>{title}</Text>
-        <Text >{duration} | {recurrency} | {category} </Text>
+        <Text >{duration} | {amount} |{recurrency} | {category?.name} </Text>
         
       </View>
 

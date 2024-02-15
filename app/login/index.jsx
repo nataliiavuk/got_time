@@ -3,7 +3,7 @@ import { SafeAreaView, Text, View, StyleSheet } from "react-native";
 import { Button, Card, TextInput } from "react-native-paper";
 import { loginStyle } from "./login.style";
 import { ScreenHeaderBtn } from "../../components";
-import { router, useRouter, Stack, Link, Redirect } from "expo-router";
+import { useRouter, Stack} from "expo-router";
 import {COLORS, icons, images, SIZES} from "../../constants";
 import { useAuth } from "../../lib/authContext"
 
@@ -24,7 +24,7 @@ const LoginScreen =() => {
         <SafeAreaView style={loginStyle.content}>     
          <Stack.Screen
             options ={{
-                headerStyle: {backgroundColor:COLORS.lightWhite},
+                headerStyle: {backgroundColor:COLORS.white},
                 headerShadowVisible: false,
                 headerBackVisible:false,
                 headerLeft : () => (

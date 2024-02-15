@@ -67,6 +67,13 @@ const styles = StyleSheet.create({
     fontFamily: FONT.medium,
     color: activeJobType === item ? COLORS.secondary : COLORS.gray2,
   }),
+
+  fab: {
+      position: 'absolute',
+      margin: 16,
+      right: 0,
+      bottom: 0,
+    },
 });
 
 export default styles;

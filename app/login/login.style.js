@@ -13,6 +13,7 @@ export const loginStyle = StyleSheet.create({
     },
 
     card:{
+        
         backgroundColor: COLORS.lightWhite,
         width: "80%"
     },

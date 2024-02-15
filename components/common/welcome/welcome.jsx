@@ -10,6 +10,7 @@ import { useRouter } from 'expo-router';
 import styles from './welcome.style';
 import { useAuth } from '../../../lib/authContext';
 import { ID, account } from "../../../lib/appwrite";
+import {FAB} from "react-native-paper"
 import  FeaturedCards   from "../../home/featured/FeaturedCards"
 import TodoCards from '../../home/todo/TodoCards';
 
@@ -17,18 +18,18 @@ import TodoCards from '../../home/todo/TodoCards';
 
 const Welcome = () => {
   const router = useRouter();
+
+  //moved auth out of the way
   const {loggedInUser} = useAuth();
 
-  return (
+   return ( 
     
-    <SafeAreaView>  
       <View style={styles.container}>
-        <Text style={styles.userName}>Welcome, {loggedInUser.name}</Text>
+        <Text style={styles.userName}>Welcome, {loggedInUser.name}, {loggedInUser.ID}</Text>
         <Text style={styles.welcomeMessage}>Let's find you time</Text>
-        <FeaturedCards/>
-        <TodoCards/>
-      </View>    
-    </SafeAreaView>
+       
+      </View>         
+   
     
   )
 }
